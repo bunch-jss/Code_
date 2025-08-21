@@ -36,5 +36,11 @@ class AboutpageTests(SimpleTestCase):
         response = self.client.get(reverse("about"))
         # python is case sensistive as you know so if i change to about page is will show an error
         self.assertContains(response, "<h1>About Page</h1>") 
+        self.assertEqual(response.status_code, 200)
         
-                    
+    def test_homepage(self):
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "home.html")
+        self.assertContains(response, "Check out this")   
+        
